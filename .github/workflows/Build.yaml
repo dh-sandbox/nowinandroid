@@ -54,14 +54,15 @@ jobs:
         run: ./gradlew testDemoDebug :lint:test
 
       - name: Generate coverage reports
-        run: ./gradlew createDemoDebugCombinedCoverageReport
+        run: ./gradlew createDemoDebugUnitTestCoverageReport
 
       - name: Upload coverage to Qlty
         uses: qltysh/qlty-action/coverage@v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-          files: '**/build/reports/jacoco/**/*.xml'
+          files: '**/build/reports/coverage/test/demoDebug/**/*.xml'
           format: jacoco
+          skip-errors: false
         env:
           JACOCO_SOURCE_PATH: >-
             app/src/main/kotlin
