@@ -59,11 +59,14 @@ jobs:
         continue-on-error: true
         run: ./gradlew createDemoDebugUnitTestCoverageReport --continue
 
+      - name: Find coverage report files
+        run: find . -path "*/build/reports/coverage*" -name "*.xml" | head -20
+
       - name: Upload coverage to Qlty
         uses: qltysh/qlty-action/coverage@v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-          files: '**/build/reports/coverage/test/demoDebug/**/*.xml'
+          files: '**/build/reports/coverage/**/*.xml'
           format: jacoco
           skip-errors: false
         env:
