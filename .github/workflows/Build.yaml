@@ -54,6 +54,9 @@ jobs:
         run: ./gradlew testDemoDebug :lint:test
 
       - name: Generate coverage reports
+        # Some modules have no unit tests, so --continue lets the rest complete.
+        # The upload step will fail if no reports are produced.
+        continue-on-error: true
         run: ./gradlew createDemoDebugUnitTestCoverageReport --continue
 
       - name: Upload coverage to Qlty
