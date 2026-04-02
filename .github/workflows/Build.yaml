@@ -66,24 +66,39 @@ jobs:
           JACOCO_SOURCE_PATH: >-
             app/src/main/kotlin
             core/analytics/src/main/kotlin
+            core/analytics/src/demo/kotlin
             core/common/src/main/kotlin
             core/data/src/main/kotlin
+            core/data-test/src/main/kotlin
             core/database/src/main/kotlin
             core/datastore/src/main/kotlin
+            core/datastore-test/src/main/kotlin
             core/designsystem/src/main/kotlin
             core/domain/src/main/kotlin
             core/model/src/main/kotlin
             core/navigation/src/main/kotlin
             core/network/src/main/kotlin
+            core/network/src/demo/kotlin
             core/notifications/src/main/kotlin
+            core/notifications/src/demo/kotlin
+            core/screenshot-testing/src/main/kotlin
+            core/testing/src/main/kotlin
             core/ui/src/main/kotlin
+            feature/bookmarks/api/src/main/kotlin
             feature/bookmarks/impl/src/main/kotlin
+            feature/foryou/api/src/main/kotlin
             feature/foryou/impl/src/main/kotlin
+            feature/interests/api/src/main/kotlin
             feature/interests/impl/src/main/kotlin
+            feature/search/api/src/main/kotlin
             feature/search/impl/src/main/kotlin
             feature/settings/impl/src/main/kotlin
+            feature/topic/api/src/main/kotlin
             feature/topic/impl/src/main/kotlin
+            lint/src/main/kotlin
             sync/work/src/main/kotlin
+            sync/work/src/demo/kotlin
+            sync/sync-test/src/main/kotlin
 
       - name: Build all build type and flavor permutations
         run: ./gradlew :app:assemble -PminifyWithR8=false
