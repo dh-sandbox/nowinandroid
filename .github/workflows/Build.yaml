@@ -54,21 +54,16 @@ jobs:
         run: ./gradlew testDemoDebug :lint:test
 
       - name: Generate coverage reports
-        # Some modules have no unit tests, so --continue lets the rest complete.
-        # The upload step will fail if no reports are produced.
-        continue-on-error: true
-        run: ./gradlew createDemoDebugUnitTestCoverageReport --continue
-
-      - name: Find coverage report files
-        run: find . -path "*/build/reports/coverage*" -name "*.xml" | head -20
+        run: ./gradlew createDemoDebugCombinedCoverageReport
 
       - name: Upload coverage to Qlty
         uses: qltysh/qlty-action/coverage@v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-          files: '**/build/reports/coverage/**/*.xml'
+          files: '**/build/reports/jacoco/**/*Report.xml'
           format: jacoco
           skip-errors: false
+          skip-missing-files: true
         env:
           JACOCO_SOURCE_PATH: >-
             app/src/main/kotlin
